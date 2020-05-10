@@ -1,4 +1,4 @@
-package ir.ac.sbu.hodhod.hodhod.entity;
+package ir.ac.sbu.hodhod.hodhod.models;
 
 import lombok.Data;
 
