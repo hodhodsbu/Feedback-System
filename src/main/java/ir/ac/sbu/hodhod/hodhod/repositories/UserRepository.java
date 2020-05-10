@@ -1,4 +1,4 @@
-package ir.ac.sbu.hodhod.hodhod.repository;
+package ir.ac.sbu.hodhod.hodhod.repositories;
 
 import ir.ac.sbu.hodhod.hodhod.models.User;
 import org.springframework.data.repository.CrudRepository;
