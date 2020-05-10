@@ -1,4 +1,4 @@
-package ir.ac.sbu.hodhod.hodhod.conf.security;
+package ir.ac.sbu.hodhod.hodhod.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -10,10 +10,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userService;
 
+
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
@@ -43,5 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
+
+        http.exceptionHandling().accessDeniedPage("/login");
+        //use JWT
+        http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
     }
 }
